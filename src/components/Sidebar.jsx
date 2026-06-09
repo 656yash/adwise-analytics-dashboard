@@ -1,8 +1,21 @@
-import { NavLink } from 'react-router-dom';
-import { LayoutDashboard, TrendingUp, Megaphone, Users, Package } from 'lucide-react';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { LayoutDashboard, TrendingUp, Megaphone, Users, Package, LogOut } from 'lucide-react';
+import { useAuth } from '../contexts/AuthContext';
 import clsx from 'clsx';
 
 export default function Sidebar() {
+  const { logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      navigate('/login');
+    } catch (error) {
+      console.error('Failed to log out', error);
+    }
+  };
+
   const links = [
     { to: '/dashboard', icon: LayoutDashboard, label: 'Overview', exact: true },
     { to: '/dashboard/revenue', icon: TrendingUp, label: 'Revenue' },
@@ -42,10 +55,17 @@ export default function Sidebar() {
       <div className="mt-auto pt-6 border-t border-white/20">
         <div className="flex items-center gap-3 px-4 py-3">
           <img src="/adwise-logo.svg" alt="Admin" className="w-10 h-10 rounded-full object-contain bg-white shadow-sm p-1" onError={(e) => e.target.style.display='none'} />
-          <div>
+          <div className="flex-1">
             <p className="text-sm font-bold text-slate-800">Admin User</p>
             <p className="text-xs text-slate-600">admin@adwise.com</p>
           </div>
+          <button 
+            onClick={handleLogout}
+            className="p-2 text-slate-500 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+            title="Log out"
+          >
+            <LogOut className="w-5 h-5" />
+          </button>
         </div>
       </div>
     </aside>
