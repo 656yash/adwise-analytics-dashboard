@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Outer sharp 'A' Chevron -->
+  <path d="M 50 10 
+           L 85 90 
+           L 65 90 
+           L 50 45 
+           L 35 90 
+           L 15 90 Z" 
+        fill="#222222" />
+
+  <!-- 4-point star in the center bottom -->
+  <path d="M 50 60 
+           Q 50 75, 60 75
+           Q 50 75, 50 90
+           Q 50 75, 40 75
+           Q 50 75, 50 60 Z"
+        fill="#222222" />
+</svg>

@@ -1,0 +1,146 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", system-ui, sans-serif;
+  
+  --color-primary: #CDB4DB;
+  --color-pink-soft: #FFC8DD;
+  --color-pink-rose: #FFAFCC;
+  --color-blue-sky: #BDE0FE;
+  --color-blue-soft: #A2D2FF;
+}
+
+@layer base {
+  html, body {
+    display: block !important;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  #root {
+    width: 100%;
+    min-height: 100vh;
+    display: block !important;
+    text-align: left;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    background: linear-gradient(135deg, #CDB4DB 0%, #FFC8DD 25%, #FFAFCC 50%, #BDE0FE 75%, #A2D2FF 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+    font-family: var(--font-sans);
+    color: #1d1b1d;
+    place-items: normal !important;
+    align-items: normal !important;
+    justify-content: normal !important;
+  }
+}
+
+@layer utilities {
+  .glass-panel {
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border-top: 1.5px solid rgba(255, 255, 255, 0.8);
+    border-left: 1.5px solid rgba(255, 255, 255, 0.6);
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 32px 12px 32px 12px; /* Aesthetic asymmetric shape */
+    box-shadow: 
+      0 15px 35px rgba(0, 0, 0, 0.05),
+      inset 0 2px 5px rgba(255, 255, 255, 0.4);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .glass-panel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.3) 50%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    transform: skewX(-25deg);
+    animation: shine 8s infinite;
+  }
+
+  @keyframes shine {
+    0% { left: -100%; }
+    20% { left: 200%; }
+    100% { left: 200%; }
+  }
+
+  .glass-panel-alt {
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border-top: 1.5px solid rgba(255, 255, 255, 0.8);
+    border-left: 1.5px solid rgba(255, 255, 255, 0.6);
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px 32px 12px 32px; /* Alternate asymmetric shape */
+    box-shadow: 
+      0 15px 35px rgba(0, 0, 0, 0.05),
+      inset 0 2px 5px rgba(255, 255, 255, 0.4);
+  }
+
+  .glass-button {
+    background: linear-gradient(135deg, #FFAFCC, #A2D2FF);
+    transition: all 0.2s ease;
+  }
+  
+  .glass-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 40px rgba(162, 210, 255, 0.4);
+  }
+
+  .sidebar-gradient {
+    background: linear-gradient(180deg, #CDB4DB, #A2D2FF);
+  }
+
+  .sidebar-active {
+    background: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 0 30px rgba(255, 200, 221, 0.4);
+  }
+
+  /* Animated Blob Landing Page Background */
+  .bg-animated-blobs {
+    background-color: #0b051a; /* deep space base */
+    background-image: 
+      radial-gradient(circle at 15% 50%, rgba(125, 91, 166, 0.4) 0%, transparent 50%),
+      radial-gradient(circle at 85% 30%, rgba(91, 157, 217, 0.4) 0%, transparent 50%),
+      radial-gradient(circle at 50% 80%, rgba(214, 90, 146, 0.4) 0%, transparent 50%);
+    background-size: 200% 200%;
+    animation: blob-morph 15s ease-in-out infinite alternate;
+  }
+
+  .grid-overlay {
+    background-size: 40px 40px;
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                      linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 80%);
+    -webkit-mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 80%);
+  }
+
+  @keyframes blob-morph {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 100%;
+    }
+    100% {
+      background-position: 50% 0%;
+    }
+  }
+}
